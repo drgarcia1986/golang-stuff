@@ -24,7 +24,7 @@ func IndexHandler(w http.ResponseWriter, r *http.Request, templates TemplateList
 		name = []string{"Stranger"}
 	}
 	err := templates["index"].ExecuteTemplate(
-		w, "base", map[string]string{"Name": name[0]})
+		w, "base", struct{ Name string }{Name: name[0]})
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
